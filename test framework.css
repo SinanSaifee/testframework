@@ -1,0 +1,53 @@
+/* Reset some default styles */
+body, h1, p, label, input, button {
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+  }
+  
+  /* Header Styles */
+  .box-shadow-header {
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  .rounded-header {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  
+  /* Form Styles */
+  .red-form {
+    background-color: #ff523b;
+    padding: 20px;
+  }
+  
+  label, input, button {
+    margin-bottom: 10px;
+  }
+  
+  /* Text Styles */
+  .red-font {
+    color: #ff523b;
+  }
+  
+  .blue-font {
+    color: #3498db;
+  }
+  
+  .yellow-font {
+    color: #f39c12;
+  }
+  
+  /* Footer Styles */
+  .box-shadow-footer {
+    background-color: #fff;
+    box-shadow: 0 -4px 6px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
