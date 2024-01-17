@@ -65,11 +65,13 @@ footer {
     width: 100%;
 }
 
-fixedbtn{
+fixedbtn {
     position: fixed;
     bottom: 10px;
     right: 10px;
     background: #ff523b;
     color: #fff;
     padding: 10px;
+    cursor: pointer;
 }
+
