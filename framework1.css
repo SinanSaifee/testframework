@@ -64,3 +64,12 @@ footer {
     bottom: 0;
     width: 100%;
 }
+
+fixed-btn{
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    background: #ff523b;
+    color: #fff;
+    pdding: 10px;
+}
