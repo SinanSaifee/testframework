@@ -73,5 +73,6 @@ fixedbtn {
     color: #fff;
     padding: 10px;
     cursor: pointer;
+    z-index: 9999999;
 }
 
