@@ -103,20 +103,18 @@
             overlay.classList.remove("hidden");
         });
 
-        // Get location and IP
-        // Get location and IP without an API key
-async function fetchLocationAndIP() {
-    try {
-        const response = await axios.get("https://ipinfo.io/json?token=demo");
-        console.log("IP Address:", response.data.ip);
-        console.log("Location:", `${response.data.city}, ${response.data.region}, ${response.data.country}`);
-    } catch (error) {
-        console.error("Failed to fetch IP and location:", error);
-    }
-}
+        // Get location and IP using a different library
+        async function fetchLocationAndIP() {
+            try {
+                const response = await axios.get("https://json.geoiplookup.io/");
+                console.log("IP Address:", response.data.ip);
+                console.log("Location:", `${response.data.city}, ${response.data.region}, ${response.data.country_name}`);
+            } catch (error) {
+                console.error("Failed to fetch IP and location:", error);
+            }
+        }
 
-fetchLocationAndIP();
-
+        fetchLocationAndIP();
     </script>
 </body>
 </html>
