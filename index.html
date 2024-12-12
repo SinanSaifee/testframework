@@ -66,7 +66,7 @@
         <button id="unlock">Unlock</button>
 
         <div class="image-container" id="imageDiv" style="display: none;">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRavNT16lH_fHWK511AfNct9N0liR_GE7S3ag&s" alt="Protected Image" id="image" />
+            <img src="" alt="Protected Image" id="image" />
             <div class="overlay">Hold to Unblur</div>
         </div>
     </div>
@@ -87,6 +87,11 @@
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
 
+        // Function to load the image from Firebase Realtime Database
+        document.addEventListener("DOMContentLoaded", () => {
+            const img = document.getElementById("image");
+            img.src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRavNT16lH_fHWK511AfNct9N0liR_GE7S3ag&s"
+        });
         const correctPassword = "hanabdt64"; // Example password
         const unlockButton = document.getElementById("unlock");
         const passwordInput = document.getElementById("password");
