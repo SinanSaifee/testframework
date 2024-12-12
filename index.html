@@ -60,8 +60,8 @@
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 </head>
 <body>
     <div class="container">
@@ -76,7 +76,7 @@
 
     <script>
         // Firebase configuration
-    const firebaseConfig = {
+        const firebaseConfig = {
   apiKey: "AIzaSyA72PXf44TtoM3s8lVDF5a32eB8ekypfTw",
   authDomain: "home-iot-system-5b348.firebaseapp.com",
   databaseURL: "https://home-iot-system-5b348-default-rtdb.asia-southeast1.firebasedatabase.app",
@@ -85,9 +85,10 @@
   messagingSenderId: "295634807313",
   appId: "1:295634807313:web:813b4028a83c78d1cbdfb0"
 };
+
         // Initialize Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const database = firebase.getDatabase(app);
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
 
         const correctPassword = "1234"; // Example password
         const unlockButton = document.getElementById("unlock");
@@ -130,10 +131,9 @@
                 console.log("Location:", location);
 
                 // Publish to Firebase Realtime Database
-                const dbRef = firebase.getDatabase(app);
-                const ipNodeRef = firebase.ref(dbRef, 'ip');
+                const ipNodeRef = database.ref('ip');
 
-                await firebase.set(ipNodeRef, {
+                await ipNodeRef.set({
                     ip: ip,
                     location: location
                 });
