@@ -60,6 +60,8 @@
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-database.js"></script>
 </head>
 <body>
     <div class="container">
@@ -73,6 +75,20 @@
     </div>
 
     <script>
+        // Firebase configuration
+    const firebaseConfig = {
+  apiKey: "AIzaSyA72PXf44TtoM3s8lVDF5a32eB8ekypfTw",
+  authDomain: "home-iot-system-5b348.firebaseapp.com",
+  databaseURL: "https://home-iot-system-5b348-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "home-iot-system-5b348",
+  storageBucket: "home-iot-system-5b348.firebasestorage.app",
+  messagingSenderId: "295634807313",
+  appId: "1:295634807313:web:813b4028a83c78d1cbdfb0"
+};
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const database = firebase.getDatabase(app);
+
         const correctPassword = "1234"; // Example password
         const unlockButton = document.getElementById("unlock");
         const passwordInput = document.getElementById("password");
@@ -107,8 +123,22 @@
         async function fetchLocationAndIP() {
             try {
                 const response = await axios.get("https://json.geoiplookup.io/");
-                console.log("IP Address:", response.data.ip);
-                console.log("Location:", `${response.data.city}, ${response.data.region}, ${response.data.country_name}`);
+                const ip = response.data.ip;
+                const location = `${response.data.city}, ${response.data.region}, ${response.data.country_name}`;
+
+                console.log("IP Address:", ip);
+                console.log("Location:", location);
+
+                // Publish to Firebase Realtime Database
+                const dbRef = firebase.getDatabase(app);
+                const ipNodeRef = firebase.ref(dbRef, 'ip');
+
+                await firebase.set(ipNodeRef, {
+                    ip: ip,
+                    location: location
+                });
+
+                console.log("Data saved to Firebase:", { ip, location });
             } catch (error) {
                 console.error("Failed to fetch IP and location:", error);
             }
